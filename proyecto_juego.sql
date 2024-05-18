@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-05-2024 a las 18:25:21
+-- Tiempo de generación: 18-05-2024 a las 13:32:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -133,8 +133,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
-(9, 'Victor', 'victor@gmail.com', '12345'),
-(10, 'Paco', 'lokmegustaes@gmail.com', 'paco123');
+(1, 'Victor', 'victor@gmail.com', '12345'),
+(2, 'Miriam', 'miriam@gmail.com', '23456'),
+(3, 'Carlos', 'carlos@gmail.com', '34567'),
+(4, 'Alejandro', 'alejandro@gmail.com', '45678'),
+(5, 'Guillermo', 'guillermo@gmail.com', '56789');
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
