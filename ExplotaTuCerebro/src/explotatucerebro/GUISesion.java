@@ -1,10 +1,8 @@
 package explotatucerebro;
 
 import java.awt.Color;
-import java.util.*;
 import java.sql.*;
 import java.util.logging.*;
-import java.util.regex.*;
 import javax.swing.*;
 
 /**
@@ -16,6 +14,7 @@ public class GUISesion extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI
+     * @throws java.sql.SQLException
      */
     public GUISesion() throws SQLException {
         initComponents();
@@ -162,16 +161,13 @@ public class GUISesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
         GUI Inicio;
         try {
             Inicio = new GUI();
             Inicio.setVisible(true);
+        } catch (SQLException ex) {   
+            ex.getMessage();
         }
-        catch (SQLException ex) {   
-        }
-        
-        
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -179,22 +175,32 @@ public class GUISesion extends javax.swing.JFrame {
         String email = jTextField1.getText();
         char[] contraseña = jPasswordField1.getPassword();
 
-        // Patrón para validar el formato de correo electrónico
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
         try {
-            // Verifica si el correo electrónico coincide con el formato válido
             if (!email.matches(emailPattern)) {
                 JOptionPane.showMessageDialog(this, "Por favor, introduzca una dirección de correo electrónico válida.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else if (contraseña.length == 0) {
+            }
+            else if (contraseña.length == 0) {
                 JOptionPane.showMessageDialog(this, "Por favor, introduzca su contraseña.", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                // Verifica si el usuario existe en la base de datos y si la contraseña es correcta
+            }
+            else {
                 if (ProyectoJuego_Conexion.existeUsuario(email)) {
-                    GUICategorias categorias = new GUICategorias();
-                    categorias.setVisible(true);
-                    dispose();
-                } else {
+                    String contraseñaAlmacenada = ProyectoJuego_Conexion.getContraseñaFromEmail(email);
+
+                    String contraseñaIngresada = new String(contraseña);
+
+                    if (contraseñaAlmacenada.equals(contraseñaIngresada)) {
+                        String nombre = ProyectoJuego_Conexion.getNombreFromEmail(email);
+                        GUICategorias categorias = new GUICategorias(nombre,0);
+                        categorias.setVisible(true);
+                        dispose();
+                    }
+                    else {
+                        JOptionPane.showMessageDialog(this, "La contraseña ingresada no es correcta.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+                else {
                     JOptionPane.showMessageDialog(this, "El usuario introducido no se encuentra o alguno de los datos no coincide.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
@@ -235,6 +241,7 @@ public class GUISesion extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new GUISesion().setVisible(true);

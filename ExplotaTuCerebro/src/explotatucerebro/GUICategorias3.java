@@ -9,7 +9,7 @@ import java.sql.*;
 */
 
 public class GUICategorias3 extends javax.swing.JFrame {
-
+    private String nombreUsuario;
     /**
      * Creates new form GUICategorias
      */
@@ -167,7 +167,7 @@ public class GUICategorias3 extends javax.swing.JFrame {
 
     private void btnCienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCienciaActionPerformed
         String categoriaSeleccionada = "Ciencias Naturales";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(51, 255, 0));
         guiInterface.setVisible(true);
         this.dispose(); 
@@ -175,7 +175,7 @@ public class GUICategorias3 extends javax.swing.JFrame {
 
     private void btnHistoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoriaActionPerformed
         String categoriaSeleccionada = "Historia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(204, 51, 255));
         guiInterface.setVisible(true);
         this.dispose(); 
@@ -183,7 +183,7 @@ public class GUICategorias3 extends javax.swing.JFrame {
 
     private void btnAnatomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnatomiaActionPerformed
         String categoriaSeleccionada = "Anatomia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 51, 51));
         guiInterface.setVisible(true);
         this.dispose(); 
@@ -191,7 +191,7 @@ public class GUICategorias3 extends javax.swing.JFrame {
 
     private void btnDeportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeportesActionPerformed
         String categoriaSeleccionada = "Deporte";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 153, 0));
         guiInterface.setVisible(true);
         this.dispose(); 
@@ -199,7 +199,7 @@ public class GUICategorias3 extends javax.swing.JFrame {
 
     private void btnGeografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeografiaActionPerformed
         String categoriaSeleccionada = "Geografia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(0, 153, 255));
         guiInterface.setVisible(true);
         this.dispose(); 

@@ -4,39 +4,45 @@ import java.awt.Color;
 import java.sql.*;
 import java.util.*;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
- * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
- * @author Grupo 1 - Miriam Daimiel Acedo | Víctor Escaso Gutiérrez | Guillermo Lucio García | Alejandro Muñoz Pardo | Carlos Isaac Muriel Cuevas.
-*/
-
+ * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a>
+ * @author Grupo 1 - Miriam Daimiel Acedo | Víctor Escaso Gutiérrez | Guillermo
+ * Lucio García | Alejandro Muñoz Pardo | Carlos Isaac Muriel Cuevas.
+ */
 public class Interface extends javax.swing.JFrame {
+
+    private String nombreUsuario;
     private String categoria;
     private String pregunta;
     private List<String> respuestas;
     private String indiceRespuestaCorrecta;
-    private static int contador;
-    private Timer timer;
+    private int contador;
+    private static int quesosObtenidos;
+    private static ArrayList<String> preguntasSalidas = new ArrayList<>();
+
     /**
      * Creates new form Geografia
      */
     public Interface() {
         initComponents();
     }
-    
-    public Interface(String categoriaSeleccionada) {
+
+    public Interface(String categoriaSeleccionada, String nombreUsuario) {
         initComponents();
+        this.nombreUsuario = nombreUsuario;
         categoria = categoriaSeleccionada;
         jLabel1.setText(categoria.toUpperCase());
         jLabel2.setText(categoria.toUpperCase());
         cargarPreguntaYRespuestas();
         mostrarPreguntaYRespuestas();
     }
-    
+
     public void setPanelColor(Color color) {
         jPanelInterface.setBackground(color);
     }
-    
+
     private void cargarPreguntaYRespuestas() {
         respuestas = new ArrayList<>();
         try {
@@ -47,20 +53,38 @@ public class Interface extends javax.swing.JFrame {
             pstmt.setInt(1, obtenerIdTest());
             ResultSet rs = pstmt.executeQuery();
 
-            if (rs.next()) {
-                pregunta = rs.getString("pregunta");
-                respuestas.add(rs.getString("respuesta1"));
-                respuestas.add(rs.getString("respuesta2"));
-                respuestas.add(rs.getString("respuesta3"));
-                respuestas.add(rs.getString("respuestaCorrecta"));
+            if (contador < 3) {
+                if (rs.next()) {
+                    if (!preguntasSalidas.contains(rs.getString("pregunta"))) {
 
-                indiceRespuestaCorrecta = rs.getString("respuestaCorrecta");
+                        pregunta = rs.getString("pregunta");
+                        preguntasSalidas.add(rs.getString("pregunta"));
+                        respuestas.add(rs.getString("respuesta1"));
+                        respuestas.add(rs.getString("respuesta2"));
+                        respuestas.add(rs.getString("respuesta3"));
+                        respuestas.add(rs.getString("respuestaCorrecta"));
+
+                        indiceRespuestaCorrecta = rs.getString("respuestaCorrecta");
+                    }else{
+                        cargarPreguntaYRespuestas();
+                    }
+                } else {
+                    jButton6.setEnabled(false);
+                }
+            } else {
+                System.out.println("Queso ganado");
+                JOptionPane.showMessageDialog(this, "¡Nuevo queso ganado!", "¡Enhorabuena!", JOptionPane.INFORMATION_MESSAGE);
+                quesosObtenidos++;
+                System.out.println(quesosObtenidos);
+                GUICategorias categorias = new GUICategorias(nombreUsuario, quesosObtenidos);
+                categorias.setVisible(true);
+                this.dispose();
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
     }
-    
+
     private int obtenerIdTest() {
         try {
             Connection conexion = ProyectoJuego_Conexion.conectar();
@@ -72,13 +96,12 @@ public class Interface extends javax.swing.JFrame {
                 return rs.getInt("idTest");
             }
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
         return -1;
     }
-    
+
     private void mostrarPreguntaYRespuestas() {
-        // Restablecer el color de fondo de los botones
         jButton1.setBackground(new JButton().getBackground());
         jButton2.setBackground(new JButton().getBackground());
         jButton3.setBackground(new JButton().getBackground());
@@ -92,9 +115,7 @@ public class Interface extends javax.swing.JFrame {
             jButton2.setText(respuestas.get(1));
             jButton3.setText(respuestas.get(2));
             jButton4.setText(respuestas.get(3));
-            
-            
-            
+
             jButton1.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
             jButton2.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
             jButton3.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
@@ -111,30 +132,35 @@ public class Interface extends javax.swing.JFrame {
     private void comprobarRespuesta(final JButton clickedButton) {
         final String indiceRespuestaSeleccionada = clickedButton.getText();
         Color colorDeFondo = clickedButton.getBackground();
-        if (indiceRespuestaSeleccionada.equals(indiceRespuestaCorrecta)) {
-            siguientePregunta(clickedButton);
+        jButton1.setBackground(Color.RED);
+        jButton2.setBackground(Color.RED);
+        jButton3.setBackground(Color.RED);
+        jButton4.setBackground(Color.RED);
+        if (!indiceRespuestaSeleccionada.equals(indiceRespuestaCorrecta)) {
+            // Si la respuesta seleccionada es incorrecta, ponerla en rojo
+            clickedButton.setBackground(Color.RED);
+            // Buscar el botón que contiene la respuesta correcta y ponerlo en verde
+            if (jButton1.getText().equals(indiceRespuestaCorrecta)) {
+                jButton1.setBackground(Color.GREEN);
+            } else if (jButton2.getText().equals(indiceRespuestaCorrecta)) {
+                jButton2.setBackground(Color.GREEN);
+            } else if (jButton3.getText().equals(indiceRespuestaCorrecta)) {
+                jButton3.setBackground(Color.GREEN);
+            } else if (jButton4.getText().equals(indiceRespuestaCorrecta)) {
+                jButton4.setBackground(Color.GREEN);
+            }
+        } else {
+            clickedButton.setBackground(Color.GREEN);
             contador++;
             puntuacion.setText("Puntuación: " + contador);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
-            
-            
-        } else {
-            clickedButton.setBackground(Color.RED);
         }
-
-        
     }
 
-    private void siguientePregunta(JButton clickedButton) {
-        clickedButton.setBackground(Color.GREEN);
-        repaint();
-    }
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -302,10 +328,9 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        GUICategorias categorias = new GUICategorias();
+        GUICategorias categorias = new GUICategorias(nombreUsuario,quesosObtenidos);
         categorias.setVisible(true);
-        
-        dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -344,6 +369,7 @@ public class Interface extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Interface().setVisible(true);
             }

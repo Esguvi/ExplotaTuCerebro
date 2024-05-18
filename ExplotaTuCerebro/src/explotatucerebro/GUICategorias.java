@@ -1,14 +1,42 @@
 package explotatucerebro;
 
-import explotatucerebro.Interface;
 import java.awt.Color;
+import java.sql.*;
 
+/**
+ * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
+ * @author Grupo 1 - Miriam Daimiel Acedo | Víctor Escaso Gutiérrez | Guillermo Lucio García | Alejandro Muñoz Pardo | Carlos Isaac Muriel Cuevas.
+*/
 
 public class GUICategorias extends javax.swing.JFrame {
-
+    private String nombreUsuario;
+    private static boolean cienciaResuelta = false;
+    private static boolean historiaResuelta = false;
+    private static boolean anatomiaResuelta = false;
+    private static boolean deportesResuelta = false;
+    private static boolean geografiaResuelta = false;
+    
     /**
      * Creates new form Categorias
+     * @param nombreUsuario
      */
+    public GUICategorias(String nombreUsuario, int quesos) {
+        this.nombreUsuario = nombreUsuario;
+        initComponents();
+        jLabel5.setText("Usuario registrado como: " + nombreUsuario);
+        ciencia.setEnabled(!cienciaResuelta);
+        historia.setEnabled(!historiaResuelta);
+        deportes.setEnabled(!deportesResuelta);
+        anatomia.setEnabled(!anatomiaResuelta);
+        geografia.setEnabled(!geografiaResuelta);
+        
+        if(quesos > 3){
+            System.out.println("Has Ganado");
+        }
+        
+        
+    }
+    
     public GUICategorias() {
         initComponents();
     }
@@ -37,6 +65,8 @@ public class GUICategorias extends javax.swing.JFrame {
         GEOGRAFIA = new javax.swing.JLabel();
         ANATOMIA = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -66,7 +96,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 anatomiaActionPerformed(evt);
             }
         });
-        jPanel1.add(anatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 120, 120, 120));
+        jPanel1.add(anatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 120, 120));
         anatomia.getAccessibleContext().setAccessibleName("anatomia");
 
         ciencia.setBackground(new java.awt.Color(51, 153, 0));
@@ -77,7 +107,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 cienciaActionPerformed(evt);
             }
         });
-        jPanel1.add(ciencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 70, 110));
+        jPanel1.add(ciencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 70, 110));
 
         geografia.setBackground(new java.awt.Color(0, 153, 255));
         geografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/geografia.jpg"))); // NOI18N
@@ -87,7 +117,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 geografiaActionPerformed(evt);
             }
         });
-        jPanel1.add(geografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 110, 110));
+        jPanel1.add(geografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 110, 110));
 
         historia.setBackground(new java.awt.Color(204, 255, 0));
         historia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/historia.jpg"))); // NOI18N
@@ -97,7 +127,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 historiaActionPerformed(evt);
             }
         });
-        jPanel1.add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 110, 110));
+        jPanel1.add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 110, 110));
 
         deportes.setBackground(new java.awt.Color(255, 153, 0));
         deportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/deporte.png"))); // NOI18N
@@ -107,49 +137,66 @@ public class GUICategorias extends javax.swing.JFrame {
                 deportesActionPerformed(evt);
             }
         });
-        jPanel1.add(deportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 120, 80, 120));
+        jPanel1.add(deportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 80, 120));
 
         DEPORTE.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         DEPORTE.setForeground(new java.awt.Color(255, 153, 0));
         DEPORTE.setText("DEPORTE");
-        jPanel1.add(DEPORTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jPanel1.add(DEPORTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
         CIENCIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         CIENCIA.setForeground(new java.awt.Color(51, 153, 0));
         CIENCIA.setText("CIENCIA");
-        jPanel1.add(CIENCIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+        jPanel1.add(CIENCIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
         HISTORIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         HISTORIA.setForeground(new java.awt.Color(255, 255, 51));
         HISTORIA.setText("HISTORIA");
-        jPanel1.add(HISTORIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+        jPanel1.add(HISTORIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
         GEOGRAFIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         GEOGRAFIA.setForeground(new java.awt.Color(0, 153, 204));
         GEOGRAFIA.setText("GEOGRAFIA");
-        jPanel1.add(GEOGRAFIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
+        jPanel1.add(GEOGRAFIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
         ANATOMIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ANATOMIA.setForeground(new java.awt.Color(255, 51, 51));
         ANATOMIA.setText("ANATOMIA");
-        jPanel1.add(ANATOMIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(493, 250, -1, -1));
+        jPanel1.add(ANATOMIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Selecciona una categoría");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/usericon.png"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 390, 40));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/logouticon.png"))); // NOI18N
+        jButton1.setText("Cerrar Sesión");
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 160, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 638, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -157,44 +204,61 @@ public class GUICategorias extends javax.swing.JFrame {
 
     private void anatomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anatomiaActionPerformed
         String categoriaSeleccionada = "Anatomia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 51, 51));
         guiInterface.setVisible(true);
+        anatomiaResuelta = true;
         this.dispose(); 
     }//GEN-LAST:event_anatomiaActionPerformed
 
     private void geografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geografiaActionPerformed
         String categoriaSeleccionada = "Geografia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(0, 153, 204));
         guiInterface.setVisible(true);
+        geografiaResuelta = true;
         this.dispose(); 
     }//GEN-LAST:event_geografiaActionPerformed
 
     private void deportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deportesActionPerformed
         String categoriaSeleccionada = "Deporte";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 153, 0));
         guiInterface.setVisible(true);
+        deportesResuelta = true;
         this.dispose(); 
     }//GEN-LAST:event_deportesActionPerformed
 
     private void cienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cienciaActionPerformed
         String categoriaSeleccionada = "Ciencias Naturales";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(51, 153, 0));
         guiInterface.setVisible(true);
+        cienciaResuelta = true;
         this.dispose(); 
     }//GEN-LAST:event_cienciaActionPerformed
 
     private void historiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historiaActionPerformed
         String categoriaSeleccionada = "Historia";
-        Interface guiInterface = new Interface(categoriaSeleccionada);
+        Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 255, 51));
         guiInterface.setVisible(true);
+        historiaResuelta = true;
         this.dispose(); 
     }//GEN-LAST:event_historiaActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+        ProyectoJuego_Conexion.conectar();
+        GUI gui;
+        try {
+            gui = new GUI();
+            gui.setVisible(true);
+        } catch (SQLException ex) {
+            ex.getMessage();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+   
     /**
      * @param args the command line arguments
      */
@@ -226,6 +290,7 @@ public class GUICategorias extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GUICategorias().setVisible(true);
             }
@@ -243,9 +308,11 @@ public class GUICategorias extends javax.swing.JFrame {
     private javax.swing.JButton deportes;
     private javax.swing.JButton geografia;
     private javax.swing.JButton historia;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

@@ -1,10 +1,8 @@
 package explotatucerebro;
 
 import java.awt.Color;
-import java.util.*;
 import java.sql.*;
 import java.util.logging.*;
-import java.util.regex.*;
 import javax.swing.*;
 
 /**
@@ -13,7 +11,6 @@ import javax.swing.*;
 */
 
 public class GUIRegistro extends javax.swing.JFrame {
-    Scanner sc = new Scanner (System.in);
     /**
      * Creates new form GUI
      * @throws java.sql.SQLException
@@ -185,15 +182,15 @@ public class GUIRegistro extends javax.swing.JFrame {
         String email = jTextField1.getText();
         String contraseña = new String(jPasswordField1.getPassword());
 
-        // Patrón para validar el formato de correo electrónico
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
         if (nombre.isEmpty() || email.isEmpty() || contraseña.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else if (!email.matches(emailPattern)) {
+        }
+        else if (!email.matches(emailPattern)) {
             JOptionPane.showMessageDialog(this, "Por favor, introduzca una dirección de correo electrónico válida.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            // Verificar si el correo ya existe en la base de datos
+        }
+        else {
             String query = "SELECT * FROM users WHERE email = ?";
 
             try (PreparedStatement pstmt = ProyectoJuego_Conexion.con.prepareStatement(query)) {
@@ -202,8 +199,8 @@ public class GUIRegistro extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     JOptionPane.showMessageDialog(this, "El correo electrónico ya está registrado.", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    // Insertar usuario en la base de datos
+                }
+                else {
                     query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
                     try (PreparedStatement insertStmt = ProyectoJuego_Conexion.con.prepareStatement(query)) {
                         insertStmt.setString(1, nombre);
@@ -216,21 +213,20 @@ public class GUIRegistro extends javax.swing.JFrame {
                     }
                 }
             } catch (SQLException ex) {
-                // Manejo de excepciones
+                ex.getMessage();
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // Acción para el botón VOLVER
         GUI Inicio;
         try {
             Inicio = new GUI();
             Inicio.setVisible(true);
         }
         catch (SQLException ex) {
+            ex.getMessage();
         }
-        
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -240,6 +236,7 @@ public class GUIRegistro extends javax.swing.JFrame {
     public static void main(String [] args) {
         ProyectoJuego_Conexion.conectar();
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new GUIRegistro().setVisible(true);

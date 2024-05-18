@@ -1,8 +1,6 @@
 package explotatucerebro;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
@@ -118,8 +116,8 @@ public class GUI extends javax.swing.JFrame {
             Sesion.setVisible(true);
         }
         catch (SQLException ex) {
+            ex.getMessage();
         }
-        
         dispose();
     }//GEN-LAST:event_btnSesionActionPerformed
 
@@ -131,9 +129,8 @@ public class GUI extends javax.swing.JFrame {
             Registro.setVisible(true);
         }
         catch (SQLException ex) {
+            ex.getMessage();
         }
-
-        
         dispose();
     }//GEN-LAST:event_btnRegistroActionPerformed
 
@@ -167,12 +164,13 @@ public class GUI extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 try {
                     new GUI().setVisible(true);
                 }
                 catch (SQLException ex) {
-                    
+                    ex.getMessage();
                 }
             }
         });

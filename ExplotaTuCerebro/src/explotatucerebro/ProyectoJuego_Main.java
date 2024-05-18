@@ -1,7 +1,11 @@
 package explotatucerebro;
 
-import java.util.*;
 import java.sql.*;
+
+/**
+ * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
+ * @author Grupo 1 - Miriam Daimiel Acedo | Víctor Escaso Gutiérrez | Guillermo Lucio García | Alejandro Muñoz Pardo | Carlos Isaac Muriel Cuevas.
+*/
 
 public class ProyectoJuego_Main {
     
@@ -12,7 +16,7 @@ public class ProyectoJuego_Main {
             gui = new GUI();
             gui.setVisible(true);
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            ex.getMessage();
         }
     }
     
