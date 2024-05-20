@@ -14,6 +14,7 @@ public class GUI extends javax.swing.JFrame {
      */
     public GUI() throws SQLException{
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

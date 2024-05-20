@@ -18,6 +18,7 @@ public class GUISesion extends javax.swing.JFrame {
      */
     public GUISesion() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

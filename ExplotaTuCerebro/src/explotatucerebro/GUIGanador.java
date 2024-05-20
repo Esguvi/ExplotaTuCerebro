@@ -15,6 +15,7 @@ public class GUIGanador extends javax.swing.JFrame {
     public GUIGanador(String nombreUsuario) throws SQLException{
         initComponents();
         lblTitulo.setText(nombreUsuario.toUpperCase()+ " ¡HAS GANADO!");
+        setLocationRelativeTo(null);
     }
 
     /**

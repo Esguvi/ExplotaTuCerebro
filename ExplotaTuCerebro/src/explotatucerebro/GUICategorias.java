@@ -46,7 +46,7 @@ public class GUICategorias extends javax.swing.JFrame {
             btnAnatomia.setEnabled(!anatomiaResuelta);
             btnGeografia.setEnabled(!geografiaResuelta); 
         }
-           
+        setLocationRelativeTo(null); 
     }
 
     /**

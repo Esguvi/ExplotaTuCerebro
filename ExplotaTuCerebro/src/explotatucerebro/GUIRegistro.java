@@ -17,6 +17,7 @@ public class GUIRegistro extends javax.swing.JFrame {
      */
     public GUIRegistro() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
