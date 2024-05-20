@@ -24,6 +24,7 @@ public class GUICategorias extends javax.swing.JFrame {
         this.nombreUsuario = nombreUsuario;
         initComponents();
         jLabel5.setText("Usuario registrado como: " + nombreUsuario);
+        lblQuesos.setText("Quesos obtenidos: " + quesos+"/5");
         ciencia.setEnabled(!cienciaResuelta);
         historia.setEnabled(!historiaResuelta);
         deportes.setEnabled(!deportesResuelta);
@@ -67,6 +68,7 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        lblQuesos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -86,7 +88,7 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel1.setText("CATEGORIAS");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 400, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, 450, 60));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 450, 60));
 
         anatomia.setBackground(new java.awt.Color(255, 51, 51));
         anatomia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/anatomia.png"))); // NOI18N
@@ -107,7 +109,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 cienciaActionPerformed(evt);
             }
         });
-        jPanel1.add(ciencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 70, 110));
+        jPanel1.add(ciencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 120));
 
         geografia.setBackground(new java.awt.Color(0, 153, 255));
         geografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/geografia.jpg"))); // NOI18N
@@ -117,7 +119,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 geografiaActionPerformed(evt);
             }
         });
-        jPanel1.add(geografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 150, 110, 110));
+        jPanel1.add(geografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 110, 120));
 
         historia.setBackground(new java.awt.Color(204, 255, 0));
         historia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/historia.jpg"))); // NOI18N
@@ -127,7 +129,7 @@ public class GUICategorias extends javax.swing.JFrame {
                 historiaActionPerformed(evt);
             }
         });
-        jPanel1.add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 110, 110));
+        jPanel1.add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, 120));
 
         deportes.setBackground(new java.awt.Color(255, 153, 0));
         deportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/deporte.png"))); // NOI18N
@@ -167,7 +169,7 @@ public class GUICategorias extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Selecciona una categoría");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,6 +189,11 @@ public class GUICategorias extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 160, -1));
+
+        lblQuesos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblQuesos.setForeground(new java.awt.Color(255, 255, 255));
+        lblQuesos.setText("Quesos Obtenidos: 0/5");
+        jPanel1.add(lblQuesos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -315,5 +322,6 @@ public class GUICategorias extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblQuesos;
     // End of variables declaration//GEN-END:variables
 }

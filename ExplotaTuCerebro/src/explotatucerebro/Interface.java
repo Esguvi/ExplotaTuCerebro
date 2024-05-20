@@ -81,7 +81,7 @@ public class Interface extends javax.swing.JFrame {
                 this.dispose();
             }
         } catch (SQLException ex) {
-            ex.getMessage();
+            System.out.println("No hay mas");
         }
     }
 
@@ -107,7 +107,7 @@ public class Interface extends javax.swing.JFrame {
         jButton3.setBackground(new JButton().getBackground());
         jButton4.setBackground(new JButton().getBackground());
 
-        jLabel5.setText(pregunta);
+        jLabel5.setText("<html><center>"+pregunta+"<center><html>");
         if (!respuestas.isEmpty()) {
             Collections.shuffle(respuestas);
 
@@ -219,6 +219,7 @@ public class Interface extends javax.swing.JFrame {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Pregunta");
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 90));
@@ -236,7 +237,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
-        jPanelInterface.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 280, 50));
+        jPanelInterface.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 280, 50));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -249,7 +250,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
 
-        jPanelInterface.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 220, 260, 50));
+        jPanelInterface.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 260, 50));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -262,7 +263,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
-        jPanelInterface.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 280, 50));
+        jPanelInterface.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 280, 50));
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -275,7 +276,7 @@ public class Interface extends javax.swing.JFrame {
         });
         jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
 
-        jPanelInterface.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, 260, 50));
+        jPanelInterface.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 260, 50));
 
         jButton6.setText("Siguiente");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -283,7 +284,7 @@ public class Interface extends javax.swing.JFrame {
                 jButton6ActionPerformed(evt);
             }
         });
-        jPanelInterface.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 90, 20));
+        jPanelInterface.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 90, 20));
 
         jButton5.setText("Salir");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -291,7 +292,7 @@ public class Interface extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        jPanelInterface.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 90, 20));
+        jPanelInterface.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 90, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
