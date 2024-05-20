@@ -1,9 +1,11 @@
 package explotatucerebro;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 /**
  * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
@@ -37,7 +39,7 @@ public class GUICategorias extends javax.swing.JFrame {
             this.nombreUsuario = nombreUsuario;
             initComponents();
             lblUsuario.setText("Usuario registrado como: " + nombreUsuario);
-            lblQuesos.setText("Quesos obtenidos: " + quesos+"/5");
+            lblQuesos.setText("Quesos obtenidos: " + quesos+"/3");
             btnCiencia.setEnabled(!cienciaResuelta);
             btnHistoria.setEnabled(!historiaResuelta);
             btnDeportes.setEnabled(!deportesResuelta);
@@ -97,79 +99,91 @@ public class GUICategorias extends javax.swing.JFrame {
 
         btnAnatomia.setBackground(new java.awt.Color(255, 51, 51));
         btnAnatomia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/anatomia.png"))); // NOI18N
-        btnAnatomia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        btnAnatomia.setBorder(null);
+        btnAnatomia.setBorderPainted(false);
+        btnAnatomia.setFocusable(false);
         btnAnatomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnatomiaActionPerformed(evt);
             }
         });
-        panelCategorias.add(btnAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 120, 120));
+        panelCategorias.add(btnAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 140, 110, 120));
         btnAnatomia.getAccessibleContext().setAccessibleName("anatomia");
 
         btnCiencia.setBackground(new java.awt.Color(51, 153, 0));
         btnCiencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/ciencia.jpg"))); // NOI18N
-        btnCiencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
+        btnCiencia.setBorder(null);
+        btnCiencia.setBorderPainted(false);
+        btnCiencia.setFocusable(false);
         btnCiencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCienciaActionPerformed(evt);
             }
         });
-        panelCategorias.add(btnCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 120));
+        panelCategorias.add(btnCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 110, 120));
 
         btnGeografia.setBackground(new java.awt.Color(0, 153, 255));
         btnGeografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/geografia.jpg"))); // NOI18N
-        btnGeografia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnGeografia.setBorder(null);
+        btnGeografia.setBorderPainted(false);
+        btnGeografia.setFocusable(false);
         btnGeografia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGeografiaActionPerformed(evt);
             }
         });
-        panelCategorias.add(btnGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 110, 120));
+        panelCategorias.add(btnGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 110, 120));
 
         btnHistoria.setBackground(new java.awt.Color(204, 255, 0));
         btnHistoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/historia.jpg"))); // NOI18N
-        btnHistoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        btnHistoria.setBorder(null);
+        btnHistoria.setBorderPainted(false);
+        btnHistoria.setFocusable(false);
         btnHistoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistoriaActionPerformed(evt);
             }
         });
-        panelCategorias.add(btnHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, 120));
+        panelCategorias.add(btnHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 110, 120));
 
         btnDeportes.setBackground(new java.awt.Color(255, 153, 0));
         btnDeportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/deporte.png"))); // NOI18N
-        btnDeportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        btnDeportes.setAlignmentY(0.0F);
+        btnDeportes.setBorder(null);
+        btnDeportes.setBorderPainted(false);
+        btnDeportes.setFocusable(false);
+        btnDeportes.setIconTextGap(40);
         btnDeportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeportesActionPerformed(evt);
             }
         });
-        panelCategorias.add(btnDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 80, 120));
+        panelCategorias.add(btnDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 110, 120));
 
         lblDeportes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblDeportes.setForeground(new java.awt.Color(255, 153, 0));
         lblDeportes.setText("DEPORTE");
-        panelCategorias.add(lblDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        panelCategorias.add(lblDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, -1, -1));
 
         lblCiencia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblCiencia.setForeground(new java.awt.Color(51, 153, 0));
         lblCiencia.setText("CIENCIA");
-        panelCategorias.add(lblCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+        panelCategorias.add(lblCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, -1));
 
         lblHistoria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblHistoria.setForeground(new java.awt.Color(255, 255, 51));
         lblHistoria.setText("HISTORIA");
-        panelCategorias.add(lblHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
+        panelCategorias.add(lblHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
         lblGeografia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblGeografia.setForeground(new java.awt.Color(0, 153, 204));
         lblGeografia.setText("GEOGRAFÍA");
-        panelCategorias.add(lblGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
+        panelCategorias.add(lblGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 270, -1, -1));
 
         lblAnatomia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblAnatomia.setForeground(new java.awt.Color(255, 51, 51));
         lblAnatomia.setText("ANATOMÍA");
-        panelCategorias.add(lblAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, -1));
+        panelCategorias.add(lblAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, -1, -1));
 
         lblSelecciona.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         lblSelecciona.setForeground(new java.awt.Color(255, 255, 255));
@@ -197,7 +211,7 @@ public class GUICategorias extends javax.swing.JFrame {
 
         lblQuesos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblQuesos.setForeground(new java.awt.Color(255, 255, 255));
-        lblQuesos.setText("Quesos Obtenidos: 0/5");
+        lblQuesos.setText("Quesos Obtenidos: 0/3");
         panelCategorias.add(lblQuesos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
