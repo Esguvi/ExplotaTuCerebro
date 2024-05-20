@@ -17,7 +17,7 @@ public class GUICategorias extends javax.swing.JFrame {
     private static boolean anatomiaResuelta = false;
     private static boolean deportesResuelta = false;
     private static boolean geografiaResuelta = false;
-        private static int quesosMaximos = 1;
+    private static int quesosMaximos = 1;
     
     /**
      * Creates new form Categorias
@@ -27,11 +27,12 @@ public class GUICategorias extends javax.swing.JFrame {
         if(quesos >= quesosMaximos){
             GUIGanador ganador;
             try {
-                ganador = new GUIGanador(); 
+                ganador = new GUIGanador(nombreUsuario);
                 ganador.setVisible(true);
             } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
+            dispose();
         }else{
             this.nombreUsuario = nombreUsuario;
             initComponents();

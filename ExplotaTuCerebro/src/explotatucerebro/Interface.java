@@ -81,9 +81,8 @@ public class Interface extends javax.swing.JFrame {
                 GUICategorias categorias = new GUICategorias(nombreUsuario, quesosObtenidos);
                 if(quesosObtenidos > quesosMaximos){
                     categorias.setVisible(true);
-                    this.dispose();
                 }
-                
+                this.dispose();
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
