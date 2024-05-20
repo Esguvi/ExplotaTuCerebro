@@ -67,7 +67,7 @@ INSERT INTO `pregunta` (`idPregunta`, `pregunta`, `respuesta1`, `respuesta2`, `r
 (23, '¿Qué significa que un animal esté en \"peligro de extinción?', 'Que no tiene extintores', 'Que es muy peligroso', 'Que no podemos tocarlo', 'Que va a desaparecer', 4),
 (24, '¿Cuál de estos animales tiene escamas?', 'Caballo', 'Ratón', 'Jirafa', 'Serpiente', 4),
 (25, '¿Cuál de estos animales no es salvaje?', 'Jirafa', 'Elefante', 'Lince', 'Cerdo', 4),
-(26, '¿Cuál es el planeta que tiene anillos?', 'Mercurio', 'Urano', 'Neptuno', 'Saturno', 4),
+(26, '¿Cuál es el planeta que tiene anillos más grandes?', 'Mercurio', 'Urano', 'Neptuno', 'Saturno', 4),
 (27, '¿Cuál es el planeta rojo?', 'Mercurio', 'Venus', 'La Tierra', 'Marte', 4),
 (28, '¿Cuál es el único planeta del universo que se conoce que existe vida?', 'Urano', 'Mercurio', 'Marte', 'La Tierra', 4),
 (29, '¿Cuál es el el planeta más grande del sistema solar?', 'Mercurio', 'Satuerno', 'Urano', 'Júpiter', 4),
@@ -80,7 +80,7 @@ INSERT INTO `pregunta` (`idPregunta`, `pregunta`, `respuesta1`, `respuesta2`, `r
 (36, '¿Cuál es el hueso más largo del cuerpo?', 'Peroné', 'Tibia', 'Radio', 'Fémur', 2),
 (37, '¿Cuál es la función principal del cuádriceps?', 'Flexión de rodilla', 'Rotación interna de rodilla', 'Rotación externa de rodilla', 'Extensión de rodilla', 2),
 (38, '¿Cuál es la función de los isquiotibiales?', 'Rotación interna de rodilla', 'Rotación externa de rodilla', 'Extensión de rodilla', 'Flexión de rodilla', 2),
-(39, '¿Qué no se debe se debe hacer al aplicar  primeros auxilios?', 'Llamar por teléfono o pedir ayuda médica', 'Evaluar con rapidez la situación', 'Acostar a un accidentado inconsciente en posición lateral de seguridad', 'Manipular una herida grave', 2),
+(39, '¿Qué no se debe se debe hacer al aplicar primeros auxilios?', 'Llamar por teléfono o pedir ayuda médica', 'Evaluar con rapidez la situación', 'Acostar a un accidentado inconsciente en posición lateral de seguridad', 'Manipular una herida grave', 2),
 (40, '¿Cuáles son los principios específicos del calentamiento?', 'Globalidad, especificidad, variedad, progresión y volumen', 'Generalidad, especificidad, duración, volumen y progresión', 'Globalidad, independencia, progresión y duración', 'Globalidad, especificidad, variedad, progresión y duración', 2),
 (41, '¿Quién fue el primer español en alcanzar el nº1 en el ranking de la ATP?', 'Rafael Nadal', 'Manuel Orantes', 'Manolo Santana', 'Carlos Moyá', 3),
 (42, '¿Quién fue el primer español en jugar en la NBA?', 'Pau Gasol', 'Rudy Fernández', 'Fernando Romay', 'Fernando Martín', 3),
@@ -89,6 +89,22 @@ INSERT INTO `pregunta` (`idPregunta`, `pregunta`, `respuesta1`, `respuesta2`, `r
 (45, '¿Cuáles son los puntos de medición de la frecuencia cardíaca en nuestro cuerpo?', 'En la aorta y la carótida', 'En la arteria radial y la aorta', 'En la arteria radial y la carótida', 'En la arteria radial, la aorta y la carótida', 2),
 (46, '¿Cuáles son los métodos de trabajo para la resistencia aeróbica?', 'Método fraccionado e isométrico', 'Método continuo e interválico', 'Método interválico e isométrico', 'Método continuo y fraccionado', 2),
 (47, '¿Cuáles son las cualidades coordinativas?', 'Velocidad, flexibilidad y coordinación', 'Agilidad, equilibrio y velocidad', 'Agilidad, equilibrio y flexibilidad', 'Agilidad, equilibrio y coordinación', 2);
+(48, '¿En qué año se aprobó la actual Constitución Española?', '1998', '1976', '1960', '1978', 5);
+(49, '¿En qué año acabó la II Guerra Mundial?', '1939', '1946', '1944', '1945', 5);
+(50, '¿CUál fue el primer presidente democrático de España tras la dictadura franquista?', 'Carrero Blanco', 'Calvo Sotelo', 'Felipe González', 'Adolfo Suárez', 5);
+(51, '¿Qué día se celebra la Constitución de España?', '12 de Octubre', '1 de Mayo', '8 de Diciembre', '6 de Diciembre', 5);
+(52, '¿En qué año empezó la I Guerra Mundial?', '1918', '1920', '1916', '1914', 5);
+(53, '¿En qué año se produjo la Revolucón Francesa?', '1897', '1798', '1879', '1789', 5);
+(54, '¿Cuánto duró la "Guerra de los Cien Años"?', '110 años', '99 años', '100 años', '116 años', 5);
+(55, '¿Quién fue el último faraón de Egipto?', 'Cleopatra', 'Keops', 'Tutankamón', 'Ramsés III', 5);
+(56, '¿En qué año empezó la conquista musulmana en España?', '715', '718', '722', '711', 5);
+(57, '¿En qué año fue el golpe de estado de Tejero?', '1979', '1980', '1978', '1981', 5);
+(58, '¿Qué estilo de natación es más rápido?', 'Mariposa', 'Espalda', 'Braza', 'Crol', 3);
+(59, '¿Cuál es el arte marcial con más practicantes en España?', 'Taekwondo', 'Jiu-jitsu', 'Karate', 'Judo', 3);
+(60, '¿A qué distancia se encuentra la línea de tres puntos en el baloncesto?', '6,25m', '6,50m', '7,00m', '6,75m', 3);
+(61, '¿En qué deporte es conocida Almudena Cid?', 'Tenis', 'Natación', 'Gimnasia deportiva', 'Gimnasia rítmica', 3);
+(62, '¿Quién era el entrenador de la selección española de fútbol que ganó el Mundial de Sudáfrica en 2010?', 'Luis Enrique Martínez', 'Julen Lopetegui', 'Luis Aragonés', 'Vicente del Bosque', 3);
+(63, '¿Quién fue el primer piloto español de Fórmula 1 en ganar un mundial?', 'Pedro Martínez de la Rosa', 'Alfonso de Portago', 'Carlos Sainz', 'Fernando Alonso', 3);
 
 -- --------------------------------------------------------
 
