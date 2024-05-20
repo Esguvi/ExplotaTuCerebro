@@ -19,7 +19,7 @@ public class GUICategorias extends javax.swing.JFrame {
     private static boolean anatomiaResuelta = false;
     private static boolean deportesResuelta = false;
     private static boolean geografiaResuelta = false;
-    private static int quesosMaximos = 1;
+    private static int quesosMaximos = 3;
     
     /**
      * Creates new form Categorias

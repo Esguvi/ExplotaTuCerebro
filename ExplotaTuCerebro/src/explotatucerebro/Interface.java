@@ -20,7 +20,7 @@ public class Interface extends javax.swing.JFrame {
     private String indiceRespuestaCorrecta;
     private int contador;
     private static int quesosObtenidos;
-    private static int quesosMaximos = 1;
+    private static int quesosMaximos = 3;
     private ArrayList<String> preguntasSalidas = new ArrayList<>();
 
     /**
@@ -81,7 +81,7 @@ public class Interface extends javax.swing.JFrame {
                 quesosObtenidos++;
                 System.out.println(quesosObtenidos);
                 GUICategorias categorias = new GUICategorias(nombreUsuario, quesosObtenidos);
-                if(quesosObtenidos > quesosMaximos){
+                if(quesosObtenidos < quesosMaximos){
                     categorias.setVisible(true);
                 }
                 this.dispose();
