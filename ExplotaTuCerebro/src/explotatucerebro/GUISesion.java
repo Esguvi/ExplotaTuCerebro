@@ -30,16 +30,16 @@ public class GUISesion extends javax.swing.JFrame {
     private void initComponents() {
 
         panelInicio = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelCentro = new javax.swing.JPanel();
+        lblEmail = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lblContraseña = new javax.swing.JLabel();
+        txtContraseña = new javax.swing.JPasswordField();
+        btnAcceder = new javax.swing.JButton();
+        panelTitulo = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        btnSalir = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("JuegoDePreguntas");
@@ -48,64 +48,64 @@ public class GUISesion extends javax.swing.JFrame {
         panelInicio.setMinimumSize(new java.awt.Dimension(621, 293));
         panelInicio.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new Color(255,102,0,100));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0), 5));
+        panelCentro.setBackground(new Color(255,102,0,100));
+        panelCentro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0), 5));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Email");
+        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Contraseña");
+        lblContraseña.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblContraseña.setForeground(new java.awt.Color(255, 255, 255));
+        lblContraseña.setText("Contraseña");
 
-        jButton1.setText("ACCEDER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAcceder.setText("ACCEDER");
+        btnAcceder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAccederActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelCentroLayout = new javax.swing.GroupLayout(panelCentro);
+        panelCentro.setLayout(panelCentroLayout);
+        panelCentroLayout.setHorizontalGroup(
+            panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCentroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmail)
+                    .addGroup(panelCentroLayout.createSequentialGroup()
+                        .addGroup(panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblEmail)
+                            .addComponent(lblContraseña))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPasswordField1))
+                    .addComponent(txtContraseña))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGroup(panelCentroLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        panelCentroLayout.setVerticalGroup(
+            panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCentroLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(lblEmail)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
+                .addComponent(lblContraseña)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(btnAcceder, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
         );
 
-        panelInicio.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 280, 230));
+        panelInicio.add(panelCentro, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 280, 230));
 
-        jPanel1.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
+        panelTitulo.setBackground(new java.awt.Color(255, 102, 0));
+        panelTitulo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 5, true));
 
         lblTitulo.setBackground(new java.awt.Color(102, 255, 255));
         lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
@@ -113,34 +113,34 @@ public class GUISesion extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("INICIAR SESIÓN");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
+        panelTitulo.setLayout(panelTituloLayout);
+        panelTituloLayout.setHorizontalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelTituloLayout.setVerticalGroup(
+            panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTituloLayout.createSequentialGroup()
                 .addComponent(lblTitulo)
                 .addGap(0, 12, Short.MAX_VALUE))
         );
 
-        panelInicio.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 610, 80));
+        panelInicio.add(panelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 610, 80));
 
-        jButton2.setText("<-- VOLVER");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("<-- VOLVER");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        panelInicio.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
+        panelInicio.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/fondo.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-        panelInicio.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/fondo.jpg"))); // NOI18N
+        lblFondo.setText("jLabel1");
+        panelInicio.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,7 +160,7 @@ public class GUISesion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         GUI Inicio;
         try {
             Inicio = new GUI();
@@ -169,11 +169,11 @@ public class GUISesion extends javax.swing.JFrame {
             ex.getMessage();
         }
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String email = jTextField1.getText();
-        char[] contraseña = jPasswordField1.getPassword();
+    private void btnAccederActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccederActionPerformed
+        String email = txtEmail.getText();
+        char[] contraseña = txtContraseña.getPassword();
 
         String emailPattern = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
@@ -207,7 +207,7 @@ public class GUISesion extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(GUISesion.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnAccederActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,16 +253,16 @@ public class GUISesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnAcceder;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JLabel lblContraseña;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel panelCentro;
     private javax.swing.JPanel panelInicio;
+    private javax.swing.JPanel panelTitulo;
+    private javax.swing.JPasswordField txtContraseña;
+    private javax.swing.JTextField txtEmail;
     // End of variables declaration//GEN-END:variables
 }

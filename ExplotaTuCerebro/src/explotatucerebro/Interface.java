@@ -20,7 +20,8 @@ public class Interface extends javax.swing.JFrame {
     private String indiceRespuestaCorrecta;
     private int contador;
     private static int quesosObtenidos;
-    private static ArrayList<String> preguntasSalidas = new ArrayList<>();
+    private static int quesosMaximos = 1;
+    private ArrayList<String> preguntasSalidas = new ArrayList<>();
 
     /**
      * Creates new form Geografia
@@ -33,8 +34,8 @@ public class Interface extends javax.swing.JFrame {
         initComponents();
         this.nombreUsuario = nombreUsuario;
         categoria = categoriaSeleccionada;
-        jLabel1.setText(categoria.toUpperCase());
-        jLabel2.setText(categoria.toUpperCase());
+        lblSombra.setText(categoria.toUpperCase());
+        lblTitulo.setText(categoria.toUpperCase());
         cargarPreguntaYRespuestas();
         mostrarPreguntaYRespuestas();
     }
@@ -54,22 +55,23 @@ public class Interface extends javax.swing.JFrame {
             ResultSet rs = pstmt.executeQuery();
 
             if (contador < 3) {
-                if (rs.next()) {
+                if (rs.next() && preguntasSalidas.size() < 5) {
                     if (!preguntasSalidas.contains(rs.getString("pregunta"))) {
 
                         pregunta = rs.getString("pregunta");
                         preguntasSalidas.add(rs.getString("pregunta"));
-                        respuestas.add(rs.getString("respuesta1"));
-                        respuestas.add(rs.getString("respuesta2"));
-                        respuestas.add(rs.getString("respuesta3"));
-                        respuestas.add(rs.getString("respuestaCorrecta"));
+                        respuestas.add("<html><center>"+rs.getString("respuesta1")+"<center><html>");
+                        respuestas.add("<html><center>"+rs.getString("respuesta2")+"<center><html>");
+                        respuestas.add("<html><center>"+rs.getString("respuesta3")+"<center><html>");
+                        respuestas.add("<html><center>"+rs.getString("respuestaCorrecta")+"<center><html>");
 
-                        indiceRespuestaCorrecta = rs.getString("respuestaCorrecta");
+                        indiceRespuestaCorrecta = "<html><center>"+rs.getString("respuestaCorrecta")+"<center><html>";
                     }else{
                         cargarPreguntaYRespuestas();
                     }
                 } else {
-                    jButton6.setEnabled(false);
+                    JOptionPane.showMessageDialog(this, "Has fallado todas las preguntas de la categoría, presiona siguiente", "Lo siento", JOptionPane.ERROR_MESSAGE);
+                    btnSiguiente.setEnabled(false);
                 }
             } else {
                 System.out.println("Queso ganado");
@@ -77,11 +79,14 @@ public class Interface extends javax.swing.JFrame {
                 quesosObtenidos++;
                 System.out.println(quesosObtenidos);
                 GUICategorias categorias = new GUICategorias(nombreUsuario, quesosObtenidos);
-                categorias.setVisible(true);
-                this.dispose();
+                if(quesosObtenidos > quesosMaximos){
+                    categorias.setVisible(true);
+                    this.dispose();
+                }
+                
             }
         } catch (SQLException ex) {
-            System.out.println("No hay mas");
+            System.out.println(ex.getMessage());
         }
     }
 
@@ -102,57 +107,57 @@ public class Interface extends javax.swing.JFrame {
     }
 
     private void mostrarPreguntaYRespuestas() {
-        jButton1.setBackground(new JButton().getBackground());
-        jButton2.setBackground(new JButton().getBackground());
-        jButton3.setBackground(new JButton().getBackground());
-        jButton4.setBackground(new JButton().getBackground());
+        lblRespuesta1.setBackground(new JButton().getBackground());
+        lblRespuesta2.setBackground(new JButton().getBackground());
+        lblRespuesta3.setBackground(new JButton().getBackground());
+        lblRespuesta4.setBackground(new JButton().getBackground());
 
-        jLabel5.setText("<html><center>"+pregunta+"<center><html>");
+        lblPregunta.setText("<html><center>"+pregunta+"<center><html>");
         if (!respuestas.isEmpty()) {
             Collections.shuffle(respuestas);
 
-            jButton1.setText(respuestas.get(0));
-            jButton2.setText(respuestas.get(1));
-            jButton3.setText(respuestas.get(2));
-            jButton4.setText(respuestas.get(3));
+            lblRespuesta1.setText(respuestas.get(0));
+            lblRespuesta2.setText(respuestas.get(1));
+            lblRespuesta3.setText(respuestas.get(2));
+            lblRespuesta4.setText(respuestas.get(3));
 
-            jButton1.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
-            jButton2.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
-            jButton3.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
-            jButton4.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
+            lblRespuesta1.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
+            lblRespuesta2.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
+            lblRespuesta3.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
+            lblRespuesta4.putClientProperty("indiceCorrecto", respuestas.indexOf(respuestas.get(3)));
         } else {
-            jButton1.setText("");
-            jButton2.setText("");
-            jButton3.setText("");
-            jButton4.setText("");
+            lblRespuesta1.setText("");
+            lblRespuesta2.setText("");
+            lblRespuesta3.setText("");
+            lblRespuesta4.setText("");
         }
-        puntuacion.setText("Puntuación: " + contador);
+        lblPuntuacion.setText("Puntuación: " + contador);
     }
 
     private void comprobarRespuesta(final JButton clickedButton) {
         final String indiceRespuestaSeleccionada = clickedButton.getText();
         Color colorDeFondo = clickedButton.getBackground();
-        jButton1.setBackground(Color.RED);
-        jButton2.setBackground(Color.RED);
-        jButton3.setBackground(Color.RED);
-        jButton4.setBackground(Color.RED);
+        lblRespuesta1.setBackground(Color.RED);
+        lblRespuesta2.setBackground(Color.RED);
+        lblRespuesta3.setBackground(Color.RED);
+        lblRespuesta4.setBackground(Color.RED);
         if (!indiceRespuestaSeleccionada.equals(indiceRespuestaCorrecta)) {
             // Si la respuesta seleccionada es incorrecta, ponerla en rojo
             clickedButton.setBackground(Color.RED);
             // Buscar el botón que contiene la respuesta correcta y ponerlo en verde
-            if (jButton1.getText().equals(indiceRespuestaCorrecta)) {
-                jButton1.setBackground(Color.GREEN);
-            } else if (jButton2.getText().equals(indiceRespuestaCorrecta)) {
-                jButton2.setBackground(Color.GREEN);
-            } else if (jButton3.getText().equals(indiceRespuestaCorrecta)) {
-                jButton3.setBackground(Color.GREEN);
-            } else if (jButton4.getText().equals(indiceRespuestaCorrecta)) {
-                jButton4.setBackground(Color.GREEN);
+            if (lblRespuesta1.getText().equals(indiceRespuestaCorrecta)) {
+                lblRespuesta1.setBackground(Color.GREEN);
+            } else if (lblRespuesta2.getText().equals(indiceRespuestaCorrecta)) {
+                lblRespuesta2.setBackground(Color.GREEN);
+            } else if (lblRespuesta3.getText().equals(indiceRespuestaCorrecta)) {
+                lblRespuesta3.setBackground(Color.GREEN);
+            } else if (lblRespuesta4.getText().equals(indiceRespuestaCorrecta)) {
+                lblRespuesta4.setBackground(Color.GREEN);
             }
         } else {
             clickedButton.setBackground(Color.GREEN);
             contador++;
-            puntuacion.setText("Puntuación: " + contador);
+            lblPuntuacion.setText("Puntuación: " + contador);
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -171,128 +176,128 @@ public class Interface extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanelInterface = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        puntuacion = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
+        lblSombra = new javax.swing.JLabel();
+        lblLinea = new javax.swing.JLabel();
+        lblSombraLinea = new javax.swing.JLabel();
+        lblPuntuacion = new javax.swing.JLabel();
+        panelPregunta = new javax.swing.JPanel();
+        lblPregunta = new javax.swing.JLabel();
+        panelRespuesta1 = new javax.swing.JPanel();
+        lblRespuesta1 = new javax.swing.JButton();
+        panelRespuesta2 = new javax.swing.JPanel();
+        lblRespuesta2 = new javax.swing.JButton();
+        panelRespuesta3 = new javax.swing.JPanel();
+        lblRespuesta3 = new javax.swing.JButton();
+        panelRespuesta4 = new javax.swing.JPanel();
+        lblRespuesta4 = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanelInterface.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("CATEGORIA");
-        jPanelInterface.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 60));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("CATEGORIA");
+        jPanelInterface.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 630, 60));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("CATEGORIA");
-        jPanelInterface.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 640, 50));
+        lblSombra.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        lblSombra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblSombra.setText("CATEGORIA");
+        jPanelInterface.add(lblSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 640, 50));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("______");
-        jPanelInterface.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
+        lblLinea.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
+        lblLinea.setForeground(new java.awt.Color(255, 255, 255));
+        lblLinea.setText("______");
+        jPanelInterface.add(lblLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 0, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
-        jLabel4.setText("______");
-        jPanelInterface.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -10, -1, 110));
+        lblSombraLinea.setFont(new java.awt.Font("Tahoma", 1, 70)); // NOI18N
+        lblSombraLinea.setText("______");
+        jPanelInterface.add(lblSombraLinea, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, -10, -1, 110));
 
-        puntuacion.setText("Puntuación: ");
-        jPanelInterface.add(puntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 90, 100));
+        lblPuntuacion.setText("Puntuación: ");
+        jPanelInterface.add(lblPuntuacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 0, 90, 100));
 
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPregunta.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Pregunta");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 90));
+        lblPregunta.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lblPregunta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblPregunta.setText("Pregunta");
+        panelPregunta.add(lblPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 90));
 
-        jPanelInterface.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 590, 90));
+        jPanelInterface.add(panelPregunta, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 590, 90));
 
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelRespuesta1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 255));
-        jButton1.setText("Respuesta1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        lblRespuesta1.setBackground(new java.awt.Color(153, 255, 255));
+        lblRespuesta1.setText("Respuesta1");
+        lblRespuesta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                lblRespuesta1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+        panelRespuesta1.add(lblRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
-        jPanelInterface.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 280, 50));
+        jPanelInterface.add(panelRespuesta1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 50));
 
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelRespuesta2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(153, 255, 255));
-        jButton2.setText("Respuesta2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        lblRespuesta2.setBackground(new java.awt.Color(153, 255, 255));
+        lblRespuesta2.setText("Respuesta2");
+        lblRespuesta2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                lblRespuesta2ActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
+        panelRespuesta2.add(lblRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
 
-        jPanelInterface.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 260, 50));
+        jPanelInterface.add(panelRespuesta2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 200, 260, 50));
 
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelRespuesta3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton3.setBackground(new java.awt.Color(153, 255, 255));
-        jButton3.setText("Respuesta3");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        lblRespuesta3.setBackground(new java.awt.Color(153, 255, 255));
+        lblRespuesta3.setText("Respuesta3");
+        lblRespuesta3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                lblRespuesta3ActionPerformed(evt);
             }
         });
-        jPanel5.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
+        panelRespuesta3.add(lblRespuesta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 50));
 
-        jPanelInterface.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 280, 50));
+        jPanelInterface.add(panelRespuesta3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 280, 50));
 
-        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelRespuesta4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton4.setBackground(new java.awt.Color(153, 255, 255));
-        jButton4.setText("Respuesta4");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        lblRespuesta4.setBackground(new java.awt.Color(153, 255, 255));
+        lblRespuesta4.setText("Respuesta4");
+        lblRespuesta4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                lblRespuesta4ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
+        panelRespuesta4.add(lblRespuesta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 260, 50));
 
-        jPanelInterface.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 260, 50));
+        jPanelInterface.add(panelRespuesta4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 260, 50));
 
-        jButton6.setText("Siguiente");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
             }
         });
-        jPanelInterface.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 340, 90, 20));
+        jPanelInterface.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 90, 20));
 
-        jButton5.setText("Salir");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        jPanelInterface.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 90, 20));
+        jPanelInterface.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 90, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -308,36 +313,36 @@ public class Interface extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void lblRespuesta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblRespuesta1ActionPerformed
         JButton clickedButton = (JButton) evt.getSource();
         comprobarRespuesta(clickedButton);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_lblRespuesta1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void lblRespuesta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblRespuesta2ActionPerformed
         JButton clickedButton = (JButton) evt.getSource();
         comprobarRespuesta(clickedButton);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_lblRespuesta2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void lblRespuesta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblRespuesta3ActionPerformed
         JButton clickedButton = (JButton) evt.getSource();
         comprobarRespuesta(clickedButton);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_lblRespuesta3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void lblRespuesta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblRespuesta4ActionPerformed
         JButton clickedButton = (JButton) evt.getSource();
         comprobarRespuesta(clickedButton);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_lblRespuesta4ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         GUICategorias categorias = new GUICategorias(nombreUsuario,quesosObtenidos);
         categorias.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         cargarPreguntaYRespuestas();
         mostrarPreguntaYRespuestas();
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -378,23 +383,23 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JPanel jPanelInterface;
-    private javax.swing.JLabel puntuacion;
+    private javax.swing.JLabel lblLinea;
+    private javax.swing.JLabel lblPregunta;
+    private javax.swing.JLabel lblPuntuacion;
+    private javax.swing.JButton lblRespuesta1;
+    private javax.swing.JButton lblRespuesta2;
+    private javax.swing.JButton lblRespuesta3;
+    private javax.swing.JButton lblRespuesta4;
+    private javax.swing.JLabel lblSombra;
+    private javax.swing.JLabel lblSombraLinea;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JPanel panelPregunta;
+    private javax.swing.JPanel panelRespuesta1;
+    private javax.swing.JPanel panelRespuesta2;
+    private javax.swing.JPanel panelRespuesta3;
+    private javax.swing.JPanel panelRespuesta4;
     // End of variables declaration//GEN-END:variables
 }

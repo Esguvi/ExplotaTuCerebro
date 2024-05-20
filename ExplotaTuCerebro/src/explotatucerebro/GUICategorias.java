@@ -2,6 +2,8 @@ package explotatucerebro;
 
 import java.awt.Color;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @see <a href="https://github.com/Esguvi/ExplotaTuCerebro">GitHub</a> 
@@ -15,31 +17,33 @@ public class GUICategorias extends javax.swing.JFrame {
     private static boolean anatomiaResuelta = false;
     private static boolean deportesResuelta = false;
     private static boolean geografiaResuelta = false;
+        private static int quesosMaximos = 1;
     
     /**
      * Creates new form Categorias
      * @param nombreUsuario
      */
     public GUICategorias(String nombreUsuario, int quesos) {
-        this.nombreUsuario = nombreUsuario;
-        initComponents();
-        jLabel5.setText("Usuario registrado como: " + nombreUsuario);
-        lblQuesos.setText("Quesos obtenidos: " + quesos+"/5");
-        ciencia.setEnabled(!cienciaResuelta);
-        historia.setEnabled(!historiaResuelta);
-        deportes.setEnabled(!deportesResuelta);
-        anatomia.setEnabled(!anatomiaResuelta);
-        geografia.setEnabled(!geografiaResuelta);
-        
-        if(quesos > 3){
-            System.out.println("Has Ganado");
+        if(quesos >= quesosMaximos){
+            GUIGanador ganador;
+            try {
+                ganador = new GUIGanador(); 
+                ganador.setVisible(true);
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }else{
+            this.nombreUsuario = nombreUsuario;
+            initComponents();
+            lblUsuario.setText("Usuario registrado como: " + nombreUsuario);
+            lblQuesos.setText("Quesos obtenidos: " + quesos+"/5");
+            btnCiencia.setEnabled(!cienciaResuelta);
+            btnHistoria.setEnabled(!historiaResuelta);
+            btnDeportes.setEnabled(!deportesResuelta);
+            btnAnatomia.setEnabled(!anatomiaResuelta);
+            btnGeografia.setEnabled(!geografiaResuelta); 
         }
-        
-        
-    }
-    
-    public GUICategorias() {
-        initComponents();
+           
     }
 
     /**
@@ -51,210 +55,210 @@ public class GUICategorias extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        anatomia = new javax.swing.JButton();
-        ciencia = new javax.swing.JButton();
-        geografia = new javax.swing.JButton();
-        historia = new javax.swing.JButton();
-        deportes = new javax.swing.JButton();
-        DEPORTE = new javax.swing.JLabel();
-        CIENCIA = new javax.swing.JLabel();
-        HISTORIA = new javax.swing.JLabel();
-        GEOGRAFIA = new javax.swing.JLabel();
-        ANATOMIA = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        panelCategorias = new javax.swing.JPanel();
+        panelTitulo = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblSombra = new javax.swing.JLabel();
+        btnAnatomia = new javax.swing.JButton();
+        btnCiencia = new javax.swing.JButton();
+        btnGeografia = new javax.swing.JButton();
+        btnHistoria = new javax.swing.JButton();
+        btnDeportes = new javax.swing.JButton();
+        lblDeportes = new javax.swing.JLabel();
+        lblCiencia = new javax.swing.JLabel();
+        lblHistoria = new javax.swing.JLabel();
+        lblGeografia = new javax.swing.JLabel();
+        lblAnatomia = new javax.swing.JLabel();
+        lblSelecciona = new javax.swing.JLabel();
+        lblUsuario = new javax.swing.JLabel();
+        btnCerrarSesion = new javax.swing.JButton();
         lblQuesos = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelCategorias.setBackground(new java.awt.Color(0, 0, 0));
+        panelCategorias.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 0));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelTitulo.setBackground(new java.awt.Color(255, 102, 0));
+        panelTitulo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("CATEGORIAS");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 5, 400, 40));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        lblTitulo.setText("CATEGORIAS");
+        panelTitulo.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 5, 400, 40));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
-        jLabel1.setText("CATEGORIAS");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 400, 40));
+        lblSombra.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        lblSombra.setText("CATEGORIAS");
+        panelTitulo.add(lblSombra, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 400, 40));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 450, 60));
+        panelCategorias.add(panelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, 450, 60));
 
-        anatomia.setBackground(new java.awt.Color(255, 51, 51));
-        anatomia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/anatomia.png"))); // NOI18N
-        anatomia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
-        anatomia.addActionListener(new java.awt.event.ActionListener() {
+        btnAnatomia.setBackground(new java.awt.Color(255, 51, 51));
+        btnAnatomia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/anatomia.png"))); // NOI18N
+        btnAnatomia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 51, 51)));
+        btnAnatomia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anatomiaActionPerformed(evt);
+                btnAnatomiaActionPerformed(evt);
             }
         });
-        jPanel1.add(anatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 120, 120));
-        anatomia.getAccessibleContext().setAccessibleName("anatomia");
+        panelCategorias.add(btnAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 140, 120, 120));
+        btnAnatomia.getAccessibleContext().setAccessibleName("anatomia");
 
-        ciencia.setBackground(new java.awt.Color(51, 153, 0));
-        ciencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/ciencia.jpg"))); // NOI18N
-        ciencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
-        ciencia.addActionListener(new java.awt.event.ActionListener() {
+        btnCiencia.setBackground(new java.awt.Color(51, 153, 0));
+        btnCiencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/ciencia.jpg"))); // NOI18N
+        btnCiencia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 153, 0)));
+        btnCiencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cienciaActionPerformed(evt);
+                btnCienciaActionPerformed(evt);
             }
         });
-        jPanel1.add(ciencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 120));
+        panelCategorias.add(btnCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 70, 120));
 
-        geografia.setBackground(new java.awt.Color(0, 153, 255));
-        geografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/geografia.jpg"))); // NOI18N
-        geografia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
-        geografia.addActionListener(new java.awt.event.ActionListener() {
+        btnGeografia.setBackground(new java.awt.Color(0, 153, 255));
+        btnGeografia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/geografia.jpg"))); // NOI18N
+        btnGeografia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255)));
+        btnGeografia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                geografiaActionPerformed(evt);
+                btnGeografiaActionPerformed(evt);
             }
         });
-        jPanel1.add(geografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 110, 120));
+        panelCategorias.add(btnGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 140, 110, 120));
 
-        historia.setBackground(new java.awt.Color(204, 255, 0));
-        historia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/historia.jpg"))); // NOI18N
-        historia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
-        historia.addActionListener(new java.awt.event.ActionListener() {
+        btnHistoria.setBackground(new java.awt.Color(204, 255, 0));
+        btnHistoria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/historia.jpg"))); // NOI18N
+        btnHistoria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 0)));
+        btnHistoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                historiaActionPerformed(evt);
+                btnHistoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(historia, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, 120));
+        panelCategorias.add(btnHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 110, 120));
 
-        deportes.setBackground(new java.awt.Color(255, 153, 0));
-        deportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/deporte.png"))); // NOI18N
-        deportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
-        deportes.addActionListener(new java.awt.event.ActionListener() {
+        btnDeportes.setBackground(new java.awt.Color(255, 153, 0));
+        btnDeportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/deporte.png"))); // NOI18N
+        btnDeportes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0)));
+        btnDeportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deportesActionPerformed(evt);
+                btnDeportesActionPerformed(evt);
             }
         });
-        jPanel1.add(deportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 80, 120));
+        panelCategorias.add(btnDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 80, 120));
 
-        DEPORTE.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        DEPORTE.setForeground(new java.awt.Color(255, 153, 0));
-        DEPORTE.setText("DEPORTE");
-        jPanel1.add(DEPORTE, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
+        lblDeportes.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblDeportes.setForeground(new java.awt.Color(255, 153, 0));
+        lblDeportes.setText("DEPORTE");
+        panelCategorias.add(lblDeportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
-        CIENCIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        CIENCIA.setForeground(new java.awt.Color(51, 153, 0));
-        CIENCIA.setText("CIENCIA");
-        jPanel1.add(CIENCIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
+        lblCiencia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblCiencia.setForeground(new java.awt.Color(51, 153, 0));
+        lblCiencia.setText("CIENCIA");
+        panelCategorias.add(lblCiencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, -1, -1));
 
-        HISTORIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        HISTORIA.setForeground(new java.awt.Color(255, 255, 51));
-        HISTORIA.setText("HISTORIA");
-        jPanel1.add(HISTORIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
+        lblHistoria.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblHistoria.setForeground(new java.awt.Color(255, 255, 51));
+        lblHistoria.setText("HISTORIA");
+        panelCategorias.add(lblHistoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, -1, -1));
 
-        GEOGRAFIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        GEOGRAFIA.setForeground(new java.awt.Color(0, 153, 204));
-        GEOGRAFIA.setText("GEOGRAFIA");
-        jPanel1.add(GEOGRAFIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
+        lblGeografia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblGeografia.setForeground(new java.awt.Color(0, 153, 204));
+        lblGeografia.setText("GEOGRAFÍA");
+        panelCategorias.add(lblGeografia, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, -1, -1));
 
-        ANATOMIA.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        ANATOMIA.setForeground(new java.awt.Color(255, 51, 51));
-        ANATOMIA.setText("ANATOMIA");
-        jPanel1.add(ANATOMIA, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, -1));
+        lblAnatomia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblAnatomia.setForeground(new java.awt.Color(255, 51, 51));
+        lblAnatomia.setText("ANATOMÍA");
+        panelCategorias.add(lblAnatomia, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Selecciona una categoría");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
+        lblSelecciona.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        lblSelecciona.setForeground(new java.awt.Color(255, 255, 255));
+        lblSelecciona.setText("Selecciona una categoría");
+        panelCategorias.add(lblSelecciona, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, -1, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/usericon.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 390, 40));
+        lblUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lblUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/usericon.png"))); // NOI18N
+        lblUsuario.setText("jLabel5");
+        panelCategorias.add(lblUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 390, 40));
 
-        jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/logouticon.png"))); // NOI18N
-        jButton1.setText("Cerrar Sesión");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCerrarSesion.setBackground(new java.awt.Color(0, 0, 0));
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
+        btnCerrarSesion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explotatucerebro/img/logouticon.png"))); // NOI18N
+        btnCerrarSesion.setText("Cerrar Sesión");
+        btnCerrarSesion.setBorderPainted(false);
+        btnCerrarSesion.setContentAreaFilled(false);
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCerrarSesionActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 160, -1));
+        panelCategorias.add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 160, -1));
 
         lblQuesos.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblQuesos.setForeground(new java.awt.Color(255, 255, 255));
         lblQuesos.setText("Quesos Obtenidos: 0/5");
-        jPanel1.add(lblQuesos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, -1));
+        panelCategorias.add(lblQuesos, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 270, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelCategorias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelCategorias, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void anatomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anatomiaActionPerformed
+    private void btnAnatomiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnatomiaActionPerformed
         String categoriaSeleccionada = "Anatomia";
         Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 51, 51));
         guiInterface.setVisible(true);
         anatomiaResuelta = true;
         this.dispose(); 
-    }//GEN-LAST:event_anatomiaActionPerformed
+    }//GEN-LAST:event_btnAnatomiaActionPerformed
 
-    private void geografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_geografiaActionPerformed
+    private void btnGeografiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeografiaActionPerformed
         String categoriaSeleccionada = "Geografia";
         Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(0, 153, 204));
         guiInterface.setVisible(true);
         geografiaResuelta = true;
         this.dispose(); 
-    }//GEN-LAST:event_geografiaActionPerformed
+    }//GEN-LAST:event_btnGeografiaActionPerformed
 
-    private void deportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deportesActionPerformed
+    private void btnDeportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeportesActionPerformed
         String categoriaSeleccionada = "Deporte";
         Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 153, 0));
         guiInterface.setVisible(true);
         deportesResuelta = true;
         this.dispose(); 
-    }//GEN-LAST:event_deportesActionPerformed
+    }//GEN-LAST:event_btnDeportesActionPerformed
 
-    private void cienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cienciaActionPerformed
+    private void btnCienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCienciaActionPerformed
         String categoriaSeleccionada = "Ciencias Naturales";
         Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(51, 153, 0));
         guiInterface.setVisible(true);
         cienciaResuelta = true;
         this.dispose(); 
-    }//GEN-LAST:event_cienciaActionPerformed
+    }//GEN-LAST:event_btnCienciaActionPerformed
 
-    private void historiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historiaActionPerformed
+    private void btnHistoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoriaActionPerformed
         String categoriaSeleccionada = "Historia";
         Interface guiInterface = new Interface(categoriaSeleccionada, nombreUsuario);
         guiInterface.setPanelColor(new Color(255, 255, 51));
         guiInterface.setVisible(true);
         historiaResuelta = true;
         this.dispose(); 
-    }//GEN-LAST:event_historiaActionPerformed
+    }//GEN-LAST:event_btnHistoriaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
         this.dispose();
         ProyectoJuego_Conexion.conectar();
         GUI gui;
@@ -264,7 +268,7 @@ public class GUICategorias extends javax.swing.JFrame {
         } catch (SQLException ex) {
             ex.getMessage();
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
    
     /**
      * @param args the command line arguments
@@ -299,29 +303,29 @@ public class GUICategorias extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new GUICategorias().setVisible(true);
+                new GUICategorias(null,0).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel ANATOMIA;
-    private javax.swing.JLabel CIENCIA;
-    private javax.swing.JLabel DEPORTE;
-    private javax.swing.JLabel GEOGRAFIA;
-    private javax.swing.JLabel HISTORIA;
-    private javax.swing.JButton anatomia;
-    private javax.swing.JButton ciencia;
-    private javax.swing.JButton deportes;
-    private javax.swing.JButton geografia;
-    private javax.swing.JButton historia;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton btnAnatomia;
+    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JButton btnCiencia;
+    private javax.swing.JButton btnDeportes;
+    private javax.swing.JButton btnGeografia;
+    private javax.swing.JButton btnHistoria;
+    private javax.swing.JLabel lblAnatomia;
+    private javax.swing.JLabel lblCiencia;
+    private javax.swing.JLabel lblDeportes;
+    private javax.swing.JLabel lblGeografia;
+    private javax.swing.JLabel lblHistoria;
     private javax.swing.JLabel lblQuesos;
+    private javax.swing.JLabel lblSelecciona;
+    private javax.swing.JLabel lblSombra;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPanel panelCategorias;
+    private javax.swing.JPanel panelTitulo;
     // End of variables declaration//GEN-END:variables
 }
