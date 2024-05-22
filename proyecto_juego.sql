@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-05-2024 a las 13:32:06
+-- Tiempo de generación: 22-05-2024 a las 09:25:50
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -70,7 +70,7 @@ INSERT INTO `pregunta` (`idPregunta`, `pregunta`, `respuesta1`, `respuesta2`, `r
 (26, '¿Cuál es el planeta que tiene anillos más grandes?', 'Mercurio', 'Urano', 'Neptuno', 'Saturno', 4),
 (27, '¿Cuál es el planeta rojo?', 'Mercurio', 'Venus', 'La Tierra', 'Marte', 4),
 (28, '¿Cuál es el único planeta del universo que se conoce que existe vida?', 'Urano', 'Mercurio', 'Marte', 'La Tierra', 4),
-(29, '¿Cuál es el el planeta más grande del sistema solar?', 'Mercurio', 'Satuerno', 'Urano', 'Júpiter', 4),
+(29, '¿Cuál es el planeta más grande del sistema solar?', 'Mercurio', 'Saturno', 'Urano', 'Júpiter', 4),
 (30, '¿Cuál es el es el octavo y último planeta del sistema solar?', 'Júpiter', 'Urano', 'Plutón', 'Neptuno', 4),
 (31, '¿Cuáles son los tres tipos de músculos que hay en el cuerpo humano?', 'Músculo liso, músculo rugoso y músculo cardíaco', 'Músculo voluntario, músculo liso y músculo esquelético', 'Músculo voluntario, músculo involuntario y músculo esquelético', 'Músculo liso, músculo cardíaco y músculo esquelético', 2),
 (32, '¿Cuántos huesos tenemos en el cuerpo humano?', '150', '470', '340', '206', 2),
@@ -88,22 +88,22 @@ INSERT INTO `pregunta` (`idPregunta`, `pregunta`, `respuesta1`, `respuesta2`, `r
 (44, '¿A que altura se encuentra el aro de baloncesto?', '2,95 metros', '2,90 metros', '3 metros', '3,05 metros', 3),
 (45, '¿Cuáles son los puntos de medición de la frecuencia cardíaca en nuestro cuerpo?', 'En la aorta y la carótida', 'En la arteria radial y la aorta', 'En la arteria radial y la carótida', 'En la arteria radial, la aorta y la carótida', 2),
 (46, '¿Cuáles son los métodos de trabajo para la resistencia aeróbica?', 'Método fraccionado e isométrico', 'Método continuo e interválico', 'Método interválico e isométrico', 'Método continuo y fraccionado', 2),
-(47, '¿Cuáles son las cualidades coordinativas?', 'Velocidad, flexibilidad y coordinación', 'Agilidad, equilibrio y velocidad', 'Agilidad, equilibrio y flexibilidad', 'Agilidad, equilibrio y coordinación', 2);
-(48, '¿En qué año se aprobó la actual Constitución Española?', '1998', '1976', '1960', '1978', 5);
-(49, '¿En qué año acabó la II Guerra Mundial?', '1939', '1946', '1944', '1945', 5);
-(50, '¿CUál fue el primer presidente democrático de España tras la dictadura franquista?', 'Carrero Blanco', 'Calvo Sotelo', 'Felipe González', 'Adolfo Suárez', 5);
-(51, '¿Qué día se celebra la Constitución de España?', '12 de Octubre', '1 de Mayo', '8 de Diciembre', '6 de Diciembre', 5);
-(52, '¿En qué año empezó la I Guerra Mundial?', '1918', '1920', '1916', '1914', 5);
-(53, '¿En qué año se produjo la Revolucón Francesa?', '1897', '1798', '1879', '1789', 5);
-(54, '¿Cuánto duró la "Guerra de los Cien Años"?', '110 años', '99 años', '100 años', '116 años', 5);
-(55, '¿Quién fue el último faraón de Egipto?', 'Cleopatra', 'Keops', 'Tutankamón', 'Ramsés III', 5);
-(56, '¿En qué año empezó la conquista musulmana en España?', '715', '718', '722', '711', 5);
-(57, '¿En qué año fue el golpe de estado de Tejero?', '1979', '1980', '1978', '1981', 5);
-(58, '¿Qué estilo de natación es más rápido?', 'Mariposa', 'Espalda', 'Braza', 'Crol', 3);
-(59, '¿Cuál es el arte marcial con más practicantes en España?', 'Taekwondo', 'Jiu-jitsu', 'Karate', 'Judo', 3);
-(60, '¿A qué distancia se encuentra la línea de tres puntos en el baloncesto?', '6,25m', '6,50m', '7,00m', '6,75m', 3);
-(61, '¿En qué deporte es conocida Almudena Cid?', 'Tenis', 'Natación', 'Gimnasia deportiva', 'Gimnasia rítmica', 3);
-(62, '¿Quién era el entrenador de la selección española de fútbol que ganó el Mundial de Sudáfrica en 2010?', 'Luis Enrique Martínez', 'Julen Lopetegui', 'Luis Aragonés', 'Vicente del Bosque', 3);
+(47, '¿Cuáles son las cualidades coordinativas?', 'Velocidad, flexibilidad y coordinación', 'Agilidad, equilibrio y velocidad', 'Agilidad, equilibrio y flexibilidad', 'Agilidad, equilibrio y coordinación', 2),
+(48, '¿En qué año se aprobó la actual Constitución Española?', '1998', '1976', '1960', '1978', 5),
+(49, '¿En qué año acabó la II Guerra Mundial?', '1939', '1946', '1944', '1945', 5),
+(50, '¿Cuál fue el primer presidente democrático de España tras la dictadura franquista?', 'Carrero Blanco', 'Calvo Sotelo', 'Felipe González', 'Adolfo Suárez', 5),
+(51, '¿Qué día se celebra la Constitución de España?', '12 de Octubre', '1 de Mayo', '8 de Diciembre', '6 de Diciembre', 5),
+(52, '¿En qué año empezó la I Guerra Mundial?', '1918', '1920', '1916', '1914', 5),
+(53, '¿En qué año se produjo la Revolución Francesa?', '1897', '1798', '1879', '1789', 5),
+(54, '¿Cuánto duró la \"Guerra de los Cien Años\"?', '110 años', '99 años', '100 años', '116 años', 5),
+(55, '¿Quién fue el último faraón de Egipto?', 'Cleopatra', 'Keops', 'Tutankamón', 'Ramsés III', 5),
+(56, '¿En qué año empezó la conquista musulmana en España?', '715', '718', '722', '711', 5),
+(57, '¿En qué año fue el golpe de estado de Tejero?', '1979', '1980', '1978', '1981', 5),
+(58, '¿Qué estilo de natación es más rápido?', 'Mariposa', 'Espalda', 'Braza', 'Crol', 3),
+(59, '¿Cuál es el arte marcial con más practicantes en España?', 'Taekwondo', 'Jiu-jitsu', 'Karate', 'Judo', 3),
+(60, '¿A qué distancia se encuentra la línea de tres puntos en el baloncesto?', '6,25m', '6,50m', '7,00m', '6,75m', 3),
+(61, '¿En qué deporte es conocida Almudena Cid?', 'Tenis', 'Natación', 'Gimnasia deportiva', 'Gimnasia rítmica', 3),
+(62, '¿Quién era el entrenador de la selección española de fútbol que ganó el Mundial de Sudáfrica en 2010?', 'Luis Enrique Martínez', 'Julen Lopetegui', 'Luis Aragonés', 'Vicente del Bosque', 3),
 (63, '¿Quién fue el primer piloto español de Fórmula 1 en ganar un mundial?', 'Pedro Martínez de la Rosa', 'Alfonso de Portago', 'Carlos Sainz', 'Fernando Alonso', 3);
 
 -- --------------------------------------------------------
@@ -153,7 +153,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
 (2, 'Miriam', 'miriam@gmail.com', '23456'),
 (3, 'Carlos', 'carlos@gmail.com', '34567'),
 (4, 'Alejandro', 'alejandro@gmail.com', '45678'),
-(5, 'Guillermo', 'guillermo@gmail.com', '56789');
+(5, 'Guillermo', 'guillermo@gmail.com', '56789'),
+(6, 'DAM1A', 'nina@gmail.com', '1234');
 
 -- --------------------------------------------------------
 
@@ -207,7 +208,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `pregunta`
 --
 ALTER TABLE `pregunta`
-  MODIFY `idPregunta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `idPregunta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT de la tabla `test`
@@ -219,7 +220,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
