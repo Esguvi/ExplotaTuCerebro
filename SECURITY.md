@@ -7,7 +7,9 @@ Available versions of the project are currently supported with security updates.
 | Version | Supported          |
 | ------- | ------------------ |
 | 1.0.0   | :white_check_mark: |
-| 1.0.1   | :x:                |
+| 1.1.0   | :white_check_mark: |
+| 1.2.0   | :white_check_mark: |
+| 2.0.0   | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
